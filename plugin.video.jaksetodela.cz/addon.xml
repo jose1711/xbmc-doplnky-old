@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addon id="plugin.video.jaksetodela.cz" name="Jak se to dela" provider-name="Ivo Brhel" version="1.0.2">
+<addon id="plugin.video.jaksetodela.cz" name="Jak se to dela" provider-name="Ivo Brhel (Jose Riha - refactoring)" version="1.0.3">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.module.stream.resolver" version="1.6.17" />
+    <import addon="script.module.stream.resolver" version="1.6.24" />
   </requires>
   <extension library="default.py" point="xbmc.python.pluginsource" provides="video">
     <provides>video</provides>
@@ -12,6 +12,8 @@
     <summary lang="cs">jaksetodela.cz</summary>
     <description lang="en">Watch online www.jaksetodela.cz</description>
     <description lang="cs">Sledujte online www.jaksetodela.cz</description>
+    <description lang="sk">Pozerajte online www.jaksetodela.cz</description>
     <platform>all</platform>
+    <source>https://github.com/kodi-czsk/plugin.video.jaksetodela.cz</source>
   </extension>
 </addon>
