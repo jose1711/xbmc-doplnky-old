@@ -53,8 +53,8 @@ class JaksetodelaContentProvider(ContentProvider):
 		cat		catl2		catl3   
 		Videa - 	Nejnovejsi      [video1, video2..]
 				Nejsledovanejsi [video1, video2..]
-                Kategorie - 	Deti a rodina	[video1, video2..]
-				Dum a zahrada	[video1, video2..]
+                Kategorie - 	Deti a rodina	[subcat1, subcat2, .., video1, video2..]
+				Dum a zahrada	[subcat1, subcat2, .., video1, video2..]
 				Doprava a cestovani
 		Rady a tipy -	Deti a rodina   [article1, article2..]
 
@@ -81,6 +81,7 @@ class JaksetodelaContentProvider(ContentProvider):
 		except:
 			# this are most likely Rady a tipy
 			navigation = page.select('div.block2 h3 a')
+
 		for link in navigation[1:]:
 			if not link.text:
 				continue
@@ -101,7 +102,17 @@ class JaksetodelaContentProvider(ContentProvider):
 		except IndexError:
 			# videa
 			navigation = page.select('div.video_thumb_watch a')
-				
+
+		subcategories = page.select('ul[id=subcategory-list] a')
+		for subcategory in subcategories:
+			item = self.dir_item()
+			if subcategory.parent.get('class') == ['selected']:
+				item['title']='[COLOR red]%s[/COLOR]' % subcategory.text
+			else:
+				item['title']='[COLOR yellow]%s[/COLOR]' % subcategory.text
+			item['url']="#catl3#"+self._url(subcategory['href'])
+			result.append(item)
+
 		for vitem in [x for x in navigation if x.img]:
 			item = self.video_item()
 			item['img'] = vitem.img['src']
